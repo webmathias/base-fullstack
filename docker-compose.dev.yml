@@ -43,7 +43,7 @@ services:
       - ./frontend/public:/usr/share/nginx/html/
       - ./logs:/logs
     ports:
-      - 80:80
+      - 3000:80
 networks:
   db:
     internal: false
