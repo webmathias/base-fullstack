@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:3.7
+    networks: 
+      - db
+    volumes:
+      - ./database:/data/db
+  backend:
+    build: 
+      context: ./backend
+    networks:
+      - backend
+      - db
+      - web
+  frontend:
+    build: 
+      context: ./frontend
+    networks:
+      - web
+      - backend
+    volumes: 
+      - ./logs:/logs
+    ports:
+      - 80:80
+networks:
+  db:
+    internal: false
+  web:
+    driver: bridge
+  backend: 
+    internal: false

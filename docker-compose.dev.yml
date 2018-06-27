@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:3.7
+    networks: 
+      - db
+    volumes:
+      - ./database:/data/db
+  backend:
+    networks:
+      - backend
+      - db
+      - web
+    image: node:10-alpine  
+    volumes: 
+      - ./backend:/backend
+    environment:
+      NODE_ENV: production
+      mongoURL: 'mongodb://db/webmathias'
+      PORT: 3000 
+    working_dir: '/backend'
+    entrypoint: ['npm','run', 'dev']
+  frontend_dev:
+    networks:
+      - backend
+    image: node:10-alpine  
+    volumes: 
+      - ./frontend:/frontend
+    environment:
+      NODE_ENV: production
+      mongoURL: 'mongodb://db/webmathias'
+      PORT: 3000 
+    working_dir: '/frontend'
+    entrypoint: ['npm','run', 'dev']
+  frontend:
+    image: nginx:1.15-alpine
+    networks:
+      - web
+      - backend
+    volumes: 
+      - ./frontend/nginx.dev.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend/public:/usr/share/nginx/html/
+      - ./logs:/logs
+    ports:
+      - 80:80
+networks:
+  db:
+    internal: false
+  web:
+    driver: bridge
+  backend: 
+    internal: false
