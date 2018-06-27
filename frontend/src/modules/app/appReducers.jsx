@@ -1,5 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { reducer as form } from 'redux-form'
+
+import moduleReducer from '../example/moduleReducer'
+
 const menuReducer = (state = {
     currentUrl: '/'
 }, action) => {
@@ -18,5 +21,6 @@ export const goto = (url) => {
     }
 };
 export default combineReducers({
-   menu: menuReducer
+    menu: menuReducer,
+    module: moduleReducer
 })

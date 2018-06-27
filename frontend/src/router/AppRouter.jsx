@@ -9,7 +9,7 @@ import Loadable from 'react-loadable';
 import Loader from '../modules/app/Loader'
 
 const LoadableModule = Loadable({
-    loader: () => import('../modules/example/Module'),
+    loader: () => import('../modules/example/ModuleList'),
     loading: (props) => <Loader {...props} />
 });
 
