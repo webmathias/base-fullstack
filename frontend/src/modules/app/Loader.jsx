@@ -5,7 +5,7 @@ export default class Loader extends Component {
     static propTypes = {
         isLoading: PropTypes.bool,
         error: PropTypes.string,
-        pastDelay: PropTypes.number,
+        pastDelay: PropTypes.bool,
         retry: PropTypes.func
     }
     render() {
