@@ -46,18 +46,18 @@ class RouterConfig extends Component {
         const { changeUrl } = this.props
         return (
             <Router history={history}>
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-2">
-                            <MenuApp routes={routes} changeUrl={changeUrl} />
-                        </div>
-                        <div className="col-10">
-                            {
-                                routes.map((route, index) =>
-                                    <Route key={index} path={route.path} component={route.component} />)
-                            }
-                        </div>
+                <div className="grid-container">
+                    <div className="header">HEADER</div>
+                    <div className="menu">
+                        <MenuApp routes={routes} changeUrl={changeUrl} />
                     </div>
+                    <div className="main">
+                        {
+                            routes.map((route, index) =>
+                                <Route key={index} path={route.path} component={route.component} />)
+                        }
+                    </div>
+                    <div className="footer">FOOTER</div>
                 </div>
             </Router>
         )
