@@ -52,8 +52,10 @@ class RouterConfig extends Component {
                             <MenuApp routes={routes} changeUrl={changeUrl} />
                         </div>
                         <div className="col-10">
-                            {routes.map((route, index) => <Route key={index} path={route.path}
-                                component={route.component} />)}
+                            {
+                                routes.map((route, index) =>
+                                    <Route key={index} path={route.path} component={route.component} />)
+                            }
                         </div>
                     </div>
                 </div>
