@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { goto } from '../modules/app/appReducers';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+// import { goto } from '../modules/app/appReducers'
 
 class MenuApp extends Component {
+    static propTypes = {
+        changeUrl: PropTypes.func,
+        url: PropTypes.string,
+        routes: PropTypes.array
+    }
     constructor(props) {
         super(props)
         this.goto = this.goto.bind(this)
@@ -13,7 +19,7 @@ class MenuApp extends Component {
     }
 
     render() {
-        const { url = "", routes } = this.props
+        const { url = '', routes } = this.props
         return <div className="list-group">
             <div onClick={() => this.goto('/')} className={'list-group-item ' + (url == '/' ? 'active' : '')}>
                 Home
@@ -27,7 +33,7 @@ class MenuApp extends Component {
                                 key={index}>
                                 {route.title}
                             </div>)
-                    return null;
+                    return null
                 })
             }
         </div>
@@ -35,5 +41,5 @@ class MenuApp extends Component {
 }
 const mapStateToProps = (state) => ({
     url: state.menu.currentUrl
-});
-export default connect(mapStateToProps)(MenuApp);
+})
+export default connect(mapStateToProps)(MenuApp)

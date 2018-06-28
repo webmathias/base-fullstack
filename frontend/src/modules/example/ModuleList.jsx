@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { fetchList } from './moduleActions'
 
 class Module extends Component {
-    static propTypes = {
-        list: PropTypes.array.isRequired
-    }
     componentDidMount() {
         const { fetchList } = this.props
         fetchList()
     }
     render() {
-        const { list } = this.props;
+        const { list } = this.props
         return <div>
             LIST
             <br />
@@ -22,6 +19,10 @@ class Module extends Component {
             ))}
         </div>
     }
+}
+Module.propTypes={
+    list: PropTypes.array.isRequired,
+    fetchList: PropTypes.func.isRequired
 }
 const mapStateToProps = state => ({
     list: state.module.list
