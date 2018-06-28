@@ -7,10 +7,10 @@ const menuReducer = (state = {
     currentUrl: '/'
 }, action) => {
     switch (action.type) {
-    case 'CHANGE_PAGE':
-        return Object.assign({}, { ...state }, { currentUrl: action.payload })
-    default:
-        return state
+        case 'CHANGE_PAGE':
+            return Object.assign({}, { ...state }, { currentUrl: action.payload })
+        default:
+            return state
     }
 }
 export const goto = (url) => {
